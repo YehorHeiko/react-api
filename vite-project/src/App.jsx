@@ -3,29 +3,24 @@ import axios from "axios"; // Подключаем Axios
 
 function App() {
   const [statiy, setStatiy] = useState([]);
-  const [newStatiy, setNewStatiy] = useState({ title: "", body: "" });
+  const url = "https://jsonplaceholder.typicode.com/posts"
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => {
-        setStatiy(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  });
-
+    axios.get(url)
+    .then((response) => {
+      setStatiy(response.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }, [])
+  
   return (
-    <div>
-      <h1>
-        {statiy.map((e) => (
-          <h1 key={e.id}>{e.id}</h1>
-          <div>{e.value}</div>
-          <div>{e.target}</div>
-        ))}
-      </h1>
-    </div>
-  );
+      <div>
+          {statiy.map((e) => (
+            <span key={e.id}>{e.id}</span>
+          ))}
+      </div>
+  )
 }
 export default App;
