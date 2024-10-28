@@ -18,7 +18,7 @@ function App() {
   return (
       <div>
           {statiy.map((e) => (
-            <span key={e.id}>{e.id}</span>
+            <span key={e.id}>{e.id} love Taisiia </span>
           ))}
       </div>
   )
