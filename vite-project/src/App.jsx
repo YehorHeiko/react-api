@@ -1,26 +1,31 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios"; // Подключаем Axios
-
+import { useEffect, useState } from "react";
 function App() {
-  const [statiy, setStatiy] = useState([]);
-  const url = "https://jsonplaceholder.typicode.com/posts"
+  const [state, setState] = useState(0);
+
 
   useEffect(() => {
-    axios.get(url)
-    .then((response) => {
-      setStatiy(response.data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }, [])
+  console.log('useEffect');
   
+  }, []);
+
   return (
-      <div>
-          {statiy.map((e) => (
-            <span key={e.id}>{e.id} love Taisiia </span>
-          ))}
-      </div>
-  )
+    <div>
+      <h1>{state}</h1>
+      <button
+        onClick={() => {
+          setState((prevCount) => prevCount + 1);
+        }}
+      >
+        Plus
+      </button>
+      <button
+        onClick={() => {
+          setState((prevCount) => prevCount - 1);
+        }}
+      >
+        Minus
+      </button>
+    </div>
+  );
 }
 export default App;
