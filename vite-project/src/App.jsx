@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
+import styles from "./ff.module.css"
 function App() {
   const [state, setState] = useState(0);
-
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-  console.log('useEffect');
-  
-  }, []);
+    setAnimate(true)
+    const timer = setTimeout(() => {
+        setAnimate(false)
+        
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [state]);
 
   return (
     <div>
-      <h1>{state}</h1>
+      <h1 
+       className={animate ? styles.animate : ''}
+      >{state}</h1>
       <button
+       
         onClick={() => {
           setState((prevCount) => prevCount + 1);
         }}
